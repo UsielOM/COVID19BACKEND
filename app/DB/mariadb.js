@@ -1,7 +1,7 @@
 const sequelize = require('./conexionBD');
 const bcrypt = require('bcryptjs');
 const User = require('./tablas/User');
-
+const Consulta = require('./tablas/Consultas');
 
 init = function() {
 
@@ -15,7 +15,11 @@ init = function() {
 //get
 
 getUsers = function(callback) {
-        User.findAll().then(user => callback(user));
+    User.findAll().then(user => callback(user));
+}
+
+getConsultas = function(callback) {
+        Consulta.findAll().then(consulta => callback(consulta));
     }
     //post
 postUser = function(req, callback) {
@@ -34,3 +38,4 @@ postUser = function(req, callback) {
 module.exports.init = init;
 module.exports.postUser = postUser
 module.exports.getUsers = getUsers
+module.exports.getConsultas = getConsultas
