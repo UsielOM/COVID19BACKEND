@@ -21,17 +21,18 @@ getUsers = function(callback) {
 getConsultas = function(callback) {
     Consulta.findAll().then(consulta => callback(consulta));
 }
-getSignosUser = function(callback, idPaciente) {
-        let hoy = new Date();
-        let dia = hoy.getDate();
-        let mes = hoy.getMonth() + 1;
-        let año = hoy.getFullYear();
+getSignosUser = function(idPaciente, callback) {
+    let hoy = new Date();
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let año = hoy.getFullYear();
+    let formato = `${año}-${mes}-${dia}`;
 
-        let formato = `${año}-${mes}-${dia}`;
-        Consulta.findOne({ where: { idPaciente: idPaciente, Fecha: formato } }).then(paciente => callback(paciente));
+    Consulta.findOne({ where: { idPaciente: idPaciente, fecha: formato } }).then(paciente => callback(paciente));
 
-    }
-    //post
+}
+
+//post
 postUser = function(req, callback) {
     const salt = bcrypt.genSaltSync();
     pw2 = bcrypt.hashSync(req.Password, salt);

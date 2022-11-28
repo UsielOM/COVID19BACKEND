@@ -7,4 +7,9 @@ module.exports = function(app, mariadb) {
         })
     })
 
+    app.get('/get/Signos/:idPaciente', (req, res) => {
+        mariadb.getSignosUser(req.params.idPaciente, result => res.send(result));
+    });
+
+
 }

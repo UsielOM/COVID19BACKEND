@@ -9,7 +9,7 @@ const Consulta = sequelize.define('Consultas', {
         autoIncrement: true
     },
     idPaciente: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
     },
     Fecha: {
