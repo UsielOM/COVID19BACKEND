@@ -19,7 +19,17 @@ getUsers = function(callback) {
 }
 
 getConsultas = function(callback) {
-        Consulta.findAll().then(consulta => callback(consulta));
+    Consulta.findAll().then(consulta => callback(consulta));
+}
+getSignosUser = function(callback, idPaciente) {
+        let hoy = new Date();
+        let dia = hoy.getDate();
+        let mes = hoy.getMonth() + 1;
+        let año = hoy.getFullYear();
+
+        let formato = `${año}-${mes}-${dia}`;
+        Consulta.findOne({ where: { idPaciente: idPaciente, Fecha: formato } }).then(paciente => callback(paciente));
+
     }
     //post
 postUser = function(req, callback) {
@@ -39,3 +49,4 @@ module.exports.init = init;
 module.exports.postUser = postUser
 module.exports.getUsers = getUsers
 module.exports.getConsultas = getConsultas
+module.exports.getSignosUser = getSignosUser;
