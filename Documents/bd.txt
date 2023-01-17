@@ -1,0 +1,155 @@
+use backendcovid
+select * from user
+
+
+
+CREATE TABLE roll (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  Roll_Name VARCHAR(255) NOT NULL
+);
+
+
+
+CREATE TABLE Users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Lastname VARCHAR(255) NOT NULL,
+  Email VARCHAR(255) NOT NULL,
+  Phone VARCHAR(255) NOT NULL,
+  Password VARCHAR(255) NOT NULL,
+  idRoll INT,
+  FOREIGN KEY (idRoll) REFERENCES roll(id)
+);
+
+
+CREATE TABLE Residence (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT,
+  Address VARCHAR(255) NOT NULL,
+  Street VARCHAR(255) NOT NULL,
+  State VARCHAR(255) NOT NULL,
+  Zipcode VARCHAR(255) NOT NULL,
+  City VARCHAR(255) NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE Medical_Information (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT,
+  Blood_Type VARCHAR(255) NOT NULL,
+  Allergies VARCHAR(255) NOT NULL,
+  Medical_Conditions VARCHAR(255) NOT NULL,
+  Vaccines VARCHAR(255) NOT NULL,
+  Height FLOAT NOT NULL,
+  Weight FLOAT NOT NULL,
+  Emergency_Contact VARCHAR(255) NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE Personal_Information (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT,
+  Age INT NOT NULL,
+  Gender VARCHAR(255) NOT NULL,
+  Date_of_birth DATE NOT NULL,
+  Personal_ID VARCHAR(255) NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE Vital_Signs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT NOT NULL,
+  Oxygen FLOAT NOT NULL,
+  Heart_rate INT NOT NULL,
+  Date DATE NOT NULL,
+  Time TIME NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE survey_answers (
+  id INT NOT NULL AUTO_INCREMENT,
+  idUser INT NOT NULL,
+  question_1 VARCHAR(255) NOT NULL,
+  question_2 VARCHAR(255) NOT NULL,
+  question_3 VARCHAR(255) NOT NULL,
+  question_4 VARCHAR(255) NOT NULL,
+  question_5 VARCHAR(255) NOT NULL,
+  question_6 VARCHAR(255) NOT NULL,
+  question_7 VARCHAR(255) NOT NULL,
+  question_8 VARCHAR(255) NOT NULL,
+  question_9 VARCHAR(255) NOT NULL,
+  question_10 VARCHAR(255) NOT NULL,
+  question_11 VARCHAR(255) NOT NULL,
+  question_12 VARCHAR(255) NOT NULL,
+  question_13 VARCHAR(255) NOT NULL,
+  question_14 VARCHAR(255) NOT NULL,
+  question_15 VARCHAR(255) NOT NULL,
+  question_16 VARCHAR(255) NOT NULL,
+  question_17 VARCHAR(255) NOT NULL,
+  Date DATE NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+
+
+CREATE TABLE Medical_Data (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT NOT NULL,
+  Specialty VARCHAR(255) NOT NULL,
+  Years_of_experience INT NOT NULL,
+  Medical_school VARCHAR(255) NOT NULL,
+  Graduation_year INT NOT NULL,
+  Residency_program VARCHAR(255),
+  License_number VARCHAR(255) NOT NULL,
+  Board_certification VARCHAR(255),
+  Notes VARCHAR(255),
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE Medical_Codes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT NOT NULL,
+  Code VARCHAR(255) NOT NULL,
+  UNIQUE (idUser),
+  FOREIGN KEY (idUser) REFERENCES Users(id)
+);
+
+CREATE TABLE Link (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT NOT NULL,
+  idCode INT NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id),
+  FOREIGN KEY (idCode) REFERENCES Medical_Codes(id)
+);
+
+CREATE TABLE Appointments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  idUser INT NOT NULL,
+  idVital_Signs INT NOT NULL,
+  idSurvey_answers INT NOT NULL,
+  Date DATE NOT NULL,
+  Time TIME NOT NULL,
+  FOREIGN KEY (idUser) REFERENCES Users(id),
+  FOREIGN KEY (idVital_Signs) REFERENCES Vital_Signs(id),
+  FOREIGN KEY (idSurvey_answers) REFERENCES survey_answers(id)
+);
+
+
+CREATE TABLE Consultas (
+    idConsulta INT AUTO_INCREMENT,
+    idPaciente INT NULL,
+    Temperatura VARCHAR(20),
+    Oxigenacion VARCHAR(150),
+    F_Cardiaca VARCHAR(100),
+    Fecha DATE,
+    primary key(idConsulta),
+    FOREIGN KEY(idPaciente) REFERENCES user(idUser)
+);
+
+ INSERT INTO Consultas (idPaciente, Temperatura,Oxigenacion,F_Cardiaca,Fecha ) 
+                   VALUES (4,'36','95','100', '2022-11-29');
+
+                  select * from consultas c 
+                  select  * from consultas where idPaciente = 1 and Fecha= ''
+                  
