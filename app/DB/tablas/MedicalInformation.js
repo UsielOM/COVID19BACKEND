@@ -29,11 +29,11 @@ const MedicalInformation = sequelize.define('Medical_Information', {
         allowNull: false
     },
     Height: {
-        type: Sequelize.DataTypes.FLOAT,
+        type: Sequelize.FLOAT,
         allowNull: false
     },
     Weight: {
-        type: Sequelize.DataTypes.FLOAT,
+        type: Sequelize.FLOAT,
         allowNull: false
     },
     Emergency_Contact: {
