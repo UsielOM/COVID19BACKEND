@@ -38,11 +38,13 @@ postUser = function(req, callback) {
     pw2 = bcrypt.hashSync(req.Password, salt);
 
     User.create({
-        FirstName: req.FirstName,
+        Name: req.FirstName,
         LastName: req.LastName,
         Email: req.Email,
         Phone: req.Phone,
-        Password: pw2
+        Password: pw2,
+        idRoll: req.idRoll,
+
     }).then(callback(true));
 }
 
