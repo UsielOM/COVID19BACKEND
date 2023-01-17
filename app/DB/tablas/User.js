@@ -1,18 +1,18 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('../conexionBD');
 
-const User = sequelize.define('Usuario', {
+const User = sequelize.define('Users', {
 
-    idUser: {
+    id: {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    FirstName: {
+    Name: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
-    LastName: {
+    Lastname: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
@@ -28,6 +28,10 @@ const User = sequelize.define('Usuario', {
     },
     Password: {
         type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    idRoll: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
     }
 
