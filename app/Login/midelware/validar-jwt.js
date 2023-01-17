@@ -10,8 +10,8 @@ const validarJTW = (req, res = response, next) => {
         });
     }
     try {
-        const { idUser, Email } = jwt.verify(token, process.env.SECRET_JWT_SEED);
-        req.idUser = idUser;
+        const { id, Email } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+        req.id = id;
         req.Email = Email;
     } catch (error) {
         return res.status(401).json({

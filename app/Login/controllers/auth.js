@@ -8,7 +8,7 @@ const loginUser = async(req, res) => {
     const { Email, Password } = req.body;
     try {
         const DB = await sequelize.query(
-            "select * from Usuario where Email = '" + Email + "';", {
+            "select * from Users where Email = '" + Email + "';", {
                 type: sequelize.QueryTypes.SELECT
             });
         if (DB >= 0) {
@@ -27,13 +27,13 @@ const loginUser = async(req, res) => {
             });
         }
 
-        const token = await generarJWT(DB[0].idUser, Email);
+        const token = await generarJWT(DB[0].id, Email);
 
         return res.json({
             ok: true,
             msg: 'Logeado',
             Email: DB[0].Email,
-            idUser: DB[0].idUser,
+            id: DB[0].id,
             token
         });
 
@@ -49,13 +49,13 @@ const loginUser = async(req, res) => {
 }
 
 const revalidarToken = async(req, res = response) => {
-    const { idUser, Email } = req;
+    const { id, Email } = req;
 
-    const token = await generarJWT(idUser, Email);
+    const token = await generarJWT(id, Email);
     return res.json({
         ok: true,
         msg: 'Renew',
-        idUser,
+        id,
         Email,
         token
     })
