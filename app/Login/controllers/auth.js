@@ -8,7 +8,7 @@ const loginUser = async(req, res) => {
     const { Email, Password } = req.body;
     try {
         const DB = await sequelize.query(
-            "select * from User where Email = '" + Email + "';", {
+            "select * from Usuario where Email = '" + Email + "';", {
                 type: sequelize.QueryTypes.SELECT
             });
         if (DB >= 0) {
