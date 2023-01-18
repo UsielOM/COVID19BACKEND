@@ -13,7 +13,7 @@ const VitalSigns = sequelize.define('Vital_Signs', {
         allowNull: false
     },
     Oxygenation: {
-        type: Sequelize.DataTypes.FLOAT,
+        type: Sequelize.FLOAT,
         allowNull: false
     },
     Heart_rate: {
@@ -21,15 +21,15 @@ const VitalSigns = sequelize.define('Vital_Signs', {
         allowNull: false
     },
     Temperature: {
-        type: Sequelize.DataTypes.FLOAT,
+        type: Sequelize.FLOAT,
         allowNull: false
     },
     Date: {
-        type: Sequelize.DataTypes.DATEONLY,
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     Time: {
-        type: Sequelize.DataTypes.TIME,
+        type: Sequelize.TIME,
         allowNull: false
     }
 

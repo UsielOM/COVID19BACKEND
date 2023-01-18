@@ -21,7 +21,7 @@ const PersonalInformation = sequelize.define('Personal_Information', {
         allowNull: false
     },
     Date_of_birth: {
-        type: Sequelize.DataTypes.DATEONLY,
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     Personal_ID: {
