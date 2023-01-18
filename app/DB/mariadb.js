@@ -49,6 +49,19 @@ postUser = function(req, callback) {
     }).then(callback(true));
 }
 
+postMedicalInformation = function(req, callback) {
+    MedicalInformation.create({
+        idUser: req.idUser,
+        Blood_Type: req.Blood_Type,
+        Allergies: req.Allergies,
+        Medical_Conditions: req.Medical_Conditions,
+        Vaccines: req.Vaccines,
+        Height: req.Height,
+        Weight: req.Weight,
+        Emergency_Contact: req.Emergency_Contact
+    }).then(callback(true));
+}
+
 module.exports.init = init;
 module.exports.postUser = postUser
 module.exports.getUsers = getUsers
