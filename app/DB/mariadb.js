@@ -7,6 +7,7 @@ const VitalSigns = require('./tablas/VitalSigns');
 const PersonalInformation = require('./tablas/PersonalInformation');
 const Residence = require('./tablas/Residence');
 const MedicalData = require('./tablas/MedicalData');
+const MedicalCodes = require('./tablas/MedicalCodes');
 init = function() {
 
     sequelize.authenticate().then(() => {
@@ -110,6 +111,12 @@ postMedicalData = function(req, callback) {
         Notes: req.Notes
     }).then(callback(true));
 }
+postMedicalCodes = function(req, callback) {
+    MedicalCodes.create({
+        idUser: req.idUser,
+        Code: req.Code,
+    }).then(callback(true));
+}
 
 module.exports.init = init;
 module.exports.getUsers = getUsers
@@ -121,3 +128,4 @@ module.exports.postVitalSigns = postVitalSigns;
 module.exports.postPersonalInformation = postPersonalInformation;
 module.exports.postResidence = postResidence;
 module.exports.postMedicalData = postMedicalData;
+module.exports.postMedicalCodes = postMedicalCodes;
