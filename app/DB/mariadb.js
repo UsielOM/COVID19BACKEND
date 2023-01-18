@@ -63,6 +63,16 @@ postMedicalInformation = function(req, callback) {
     }).then(callback(true));
 }
 
+postVitalSigns = function(req, callback) {
+    VitalSigns.create({
+        idUser: req.idUser,
+        Oxygenation: req.Oxygenation,
+        Heart_rate: req.Heart_rate,
+        Temperature: req.Temperature,
+        Date: req.Date,
+        Time: req.Time,
+    }).then(callback(true));
+}
 module.exports.init = init;
 module.exports.postUser = postUser
 module.exports.getUsers = getUsers
