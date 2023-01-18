@@ -5,6 +5,7 @@ const MedicalInformation = require('./tablas/MedicalInformation');
 const Consulta = require('./tablas/Consultas');
 const VitalSigns = require('./tablas/VitalSigns');
 const PersonalInformation = require('./tablas/PersonalInformation');
+const Residence = require('./tablas/Residence');
 init = function() {
 
     sequelize.authenticate().then(() => {
@@ -81,7 +82,18 @@ postPersonalInformation = function(req, callback) {
         Date_of_birth: req.Date_of_birth,
         Personal_ID: req.Personal_ID,
 
-    }).hen(callback(true));
+    }).then(callback(true));
+}
+
+postResidence = function(req, callback) {
+    Residence.create({
+        idUser: req.idUser,
+        Address: req.Address,
+        Street: req.Street,
+        State: req.State,
+        StZipcodeate: req.StZipcodeate,
+        City: req.City,
+    }).then(callback(true));
 }
 
 module.exports.init = init;
@@ -92,3 +104,4 @@ module.exports.getSignosUser = getSignosUser;
 module.exports.postMedicalInformation = postMedicalInformation;
 module.exports.postVitalSigns = postVitalSigns;
 module.exports.postPersonalInformation = postPersonalInformation;
+module.exports.postResidence = postResidence;
