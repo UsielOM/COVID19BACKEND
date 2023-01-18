@@ -25,6 +25,9 @@ init = function() {
 getUsers = function(callback) {
     User.findAll().then(user => callback(user));
 }
+getUserOne = function(id, callback) {
+    User.findOne({ where: { id: id } }).then(paciente => callback(paciente));
+}
 
 getConsultas = function(callback) {
     Consulta.findAll().then(consulta => callback(consulta));
@@ -159,9 +162,11 @@ postSurveyAnswers = function(req, callback) {
     }).then(callback(true));
 }
 module.exports.init = init;
-module.exports.getUsers = getUsers
-module.exports.getConsultas = getConsultas
+module.exports.getUsers = getUsers;
+module.exports.getConsultas = getConsultas;
 module.exports.getSignosUser = getSignosUser;
+module.exports.getUserOne = getUserOne;
+//Post
 module.exports.postUser = postUser;
 module.exports.postMedicalInformation = postMedicalInformation;
 module.exports.postVitalSigns = postVitalSigns;
