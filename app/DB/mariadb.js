@@ -73,6 +73,16 @@ postVitalSigns = function(req, callback) {
         Time: req.Time,
     }).then(callback(true));
 }
+postPersonalInformation = function(req, callback) {
+    PersonalInformation.create({
+        idUser: req.idUser,
+        Age: req.Age,
+        Gender: req.Gender,
+        Date_of_birth: req.Date_of_birth,
+        Personal_ID: req.Personal_ID,
+
+    }).hen(callback(true));
+}
 
 module.exports.init = init;
 module.exports.postUser = postUser
@@ -81,3 +91,4 @@ module.exports.getConsultas = getConsultas
 module.exports.getSignosUser = getSignosUser;
 module.exports.postMedicalInformation = postMedicalInformation;
 module.exports.postVitalSigns = postVitalSigns;
+module.exports.postPersonalInformation = postPersonalInformation;
