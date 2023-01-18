@@ -10,6 +10,7 @@ const MedicalData = require('./tablas/MedicalData');
 const MedicalCodes = require('./tablas/MedicalCodes');
 const Link = require('./tablas/Link');
 const SurveyAnswers = require('./tablas/SurveyAnswers');
+const Appointments = require('./tablas/Appointments');
 init = function() {
 
     sequelize.authenticate().then(() => {
@@ -126,7 +127,15 @@ postLink = function(req, callback) {
         idCode: req.idCode,
     }).then(callback(true));
 }
-
+postAppointments = function(req, callback) {
+    Appointments.create({
+        idUser: req.idUser,
+        idVital_Signs: req.idVital_Signs,
+        idSurvey_answers: req.idSurvey_answers,
+        Date: req.Date,
+        Time: req.Time,
+    }).then(callback(true));
+}
 postSurveyAnswers = function(req, callback) {
     SurveyAnswers.create({
         idUser: req.idUser,
@@ -162,3 +171,4 @@ module.exports.postMedicalData = postMedicalData;
 module.exports.postMedicalCodes = postMedicalCodes;
 module.exports.postLink = postLink;
 module.exports.postSurveyAnswers = postSurveyAnswers;
+module.exports.postAppointments = postAppointments;
