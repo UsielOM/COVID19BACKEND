@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const generarJWT = (idUser, Email) => {
-    const playload = { idUser, Email };
+const generarJWT = (id, Email) => {
+    const playload = { id, Email };
     return new Promise((resolve, reject) => {
         jwt.sign(playload, process.env.SECRET_JWT_SEED, {
                 expiresIn: '4h'
