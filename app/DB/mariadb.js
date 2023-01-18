@@ -67,3 +67,4 @@ module.exports.postUser = postUser
 module.exports.getUsers = getUsers
 module.exports.getConsultas = getConsultas
 module.exports.getSignosUser = getSignosUser;
+module.exports.postMedicalInformation = postMedicalInformation;
