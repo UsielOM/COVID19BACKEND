@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('./tablas/User');
 const MedicalInformation = require('./tablas/MedicalInformation')
 const Consulta = require('./tablas/Consultas');
+const VitalSigns = require('./tablas/VitalSigns');
 
 init = function() {
 
