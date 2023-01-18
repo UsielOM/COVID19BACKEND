@@ -9,6 +9,7 @@ const Residence = require('./tablas/Residence');
 const MedicalData = require('./tablas/MedicalData');
 const MedicalCodes = require('./tablas/MedicalCodes');
 const Link = require('./tablas/Link');
+const SurveyAnswers = require('./tablas/SurveyAnswers');
 init = function() {
 
     sequelize.authenticate().then(() => {
@@ -126,6 +127,28 @@ postLink = function(req, callback) {
     }).then(callback(true));
 }
 
+postSurveyAnswers = function(req, callback) {
+    SurveyAnswers.create({
+        idUser: req.idUser,
+        question_1: req.question_1,
+        question_2: req.question_2,
+        question_3: req.question_3,
+        question_4: req.question_4,
+        question_5: req.question_5,
+        question_6: req.question_6,
+        question_7: req.question_7,
+        question_8: req.question_8,
+        question_9: req.question_9,
+        question_10: req.question_10,
+        question_11: req.question_11,
+        question_12: req.question_12,
+        question_13: req.question_13,
+        question_14: req.question_14,
+        question_15: req.question_15,
+        question_16: req.question_16,
+        question_17: req.question_17,
+    }).then(callback(true));
+}
 module.exports.init = init;
 module.exports.getUsers = getUsers
 module.exports.getConsultas = getConsultas
@@ -138,3 +161,4 @@ module.exports.postResidence = postResidence;
 module.exports.postMedicalData = postMedicalData;
 module.exports.postMedicalCodes = postMedicalCodes;
 module.exports.postLink = postLink;
+module.exports.postSurveyAnswers = postSurveyAnswers;
