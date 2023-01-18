@@ -11,4 +11,10 @@ module.exports = function(app, mariadb) {
             res.send(result);
         })
     })
+
+    app.get('/get/User/:id', (req, res) => {
+        mariadb.getUserOne(req.params.id, result => res.send(result));
+    })
+
+
 }
