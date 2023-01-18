@@ -1,10 +1,10 @@
 const sequelize = require('./conexionBD');
 const bcrypt = require('bcryptjs');
 const User = require('./tablas/User');
-const MedicalInformation = require('./tablas/MedicalInformation')
+const MedicalInformation = require('./tablas/MedicalInformation');
 const Consulta = require('./tablas/Consultas');
 const VitalSigns = require('./tablas/VitalSigns');
-
+const PersonalInformation = require('./tablas/PersonalInformation');
 init = function() {
 
     sequelize.authenticate().then(() => {
@@ -73,6 +73,7 @@ postVitalSigns = function(req, callback) {
         Time: req.Time,
     }).then(callback(true));
 }
+
 module.exports.init = init;
 module.exports.postUser = postUser
 module.exports.getUsers = getUsers
