@@ -1,4 +1,4 @@
-odule.exports = function(app, mariadb) {
+module.exports = function(app, mariadb) {
 
 
     app.post('/post/postSurveyAnswers', (req, res) => {
