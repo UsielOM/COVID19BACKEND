@@ -1,6 +1,7 @@
 const sequelize = require('./conexionBD');
 const bcrypt = require('bcryptjs');
 const User = require('./tablas/User');
+const MedicalInformation = require('./tablas/MedicalInformation')
 const Consulta = require('./tablas/Consultas');
 
 init = function() {
