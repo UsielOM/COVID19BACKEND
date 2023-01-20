@@ -1,7 +1,7 @@
 const { SerialPort } = require('serialport')
 
 module.exports = function() {
-    const port = new SerialPort({ path: 'COM11', baudRate: 230400 })
+    const port = new SerialPort({ path: 'COM3', baudRate: 38400 })
 
     port.write('main screen turn on', function(err) {
         if (err) {
