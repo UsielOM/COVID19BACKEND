@@ -43,6 +43,18 @@ getSignosUser = function(idPaciente, callback) {
 
 }
 
+getPersonalInformation = function(idUser, callback) {
+    PersonalInformation.findOne({ where: { idUser: idUser } })
+        .then(function(regisExists) {
+            if (regisExists) {
+                callback(true);
+            } else {
+                callback(false);
+            }
+        });
+}
+
+
 //post
 postUser = function(req, callback) {
     const salt = bcrypt.genSaltSync();
@@ -166,6 +178,7 @@ module.exports.getUsers = getUsers;
 module.exports.getConsultas = getConsultas;
 module.exports.getSignosUser = getSignosUser;
 module.exports.getUserOne = getUserOne;
+module.exports.getPersonalInformation = getPersonalInformation;
 //Post
 module.exports.postUser = postUser;
 module.exports.postMedicalInformation = postMedicalInformation;
