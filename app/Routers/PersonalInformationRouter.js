@@ -7,4 +7,9 @@ module.exports = function(app, mariadb) {
         })
     })
 
+    app.get('/get/getPersonalInformation/:idUser', (req, res) => {
+        mariadb.getPersonalInformation(req.params.idUser, result => res.send(result))
+    })
+
+
 }
