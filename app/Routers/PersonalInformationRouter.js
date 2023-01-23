@@ -11,5 +11,9 @@ module.exports = function(app, mariadb) {
         mariadb.getPersonalInformation(req.params.idUser, result => res.send(result))
     })
 
+    app.get('/get/getPersonalInformationForeignKey/:idUser', (req, res) => {
+        mariadb.getPersonalInformationForeignKey(req.params.idUser, result => res.send(result));
+    })
+
 
 }

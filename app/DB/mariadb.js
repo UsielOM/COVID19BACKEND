@@ -56,19 +56,33 @@ getPersonalInformation = function(idUser, callback) {
         });
 }
 
-async function getPersonalInformationForeignKey() {
+getPersonalInformationForeignKey = function(idUser, callback) {
     try {
-        const results = await PersonalInformation.findAll({
+        PersonalInformation.findOne({
+            where: { idUser: idUser },
             include: [{
                 model: User,
                 as: 'Users'
             }]
-        });
-        return results;
+        }).then(information => callback(information));
+
     } catch (error) {
         console.error(error);
     }
 }
+
+getInternos = function(callback) {
+    Interno.findAll({
+        include: [
+            { model: Estatus, attributes: ['estatus'] },
+            { model: Usuarios, attributes: ['idUsuarios', 'Nombre'] },
+            { model: Area, attributes: ['Nombre'] },
+            { model: Roll, attributes: ['Descripcion'] }
+
+        ],
+        attributes: ['idInterno'],
+    }).then(interno => callback(interno));
+};
 
 //post
 postUser = function(req, callback) {
