@@ -11,10 +11,12 @@ const MedicalCodes = require('./tablas/MedicalCodes');
 const Link = require('./tablas/Link');
 const SurveyAnswers = require('./tablas/SurveyAnswers');
 const Appointments = require('./tablas/Appointments');
+const foreignKey = require('./relaciones');
 init = function() {
 
     sequelize.authenticate().then(() => {
         console.log("Conexion establecida exitosamente con mariadb");
+        foreignKey();
     }).catch(err => {
         console.error("Conexion no establecida", err);
     });
@@ -54,6 +56,19 @@ getPersonalInformation = function(idUser, callback) {
         });
 }
 
+async function getPersonalInformationForeignKey() {
+    try {
+        const results = await PersonalInformation.findAll({
+            include: [{
+                model: User,
+                as: 'Users'
+            }]
+        });
+        return results;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 //post
 postUser = function(req, callback) {
@@ -179,6 +194,7 @@ module.exports.getConsultas = getConsultas;
 module.exports.getSignosUser = getSignosUser;
 module.exports.getUserOne = getUserOne;
 module.exports.getPersonalInformation = getPersonalInformation;
+module.exports.getPersonalInformationForeignKey = getPersonalInformationForeignKey;
 //Post
 module.exports.postUser = postUser;
 module.exports.postMedicalInformation = postMedicalInformation;
